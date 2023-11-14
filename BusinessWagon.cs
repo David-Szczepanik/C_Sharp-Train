@@ -5,17 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Train {
-    internal class BusinessWagon : PersonalWagon {
+    class BusinessWagon : PersonalWagon {
         private Person steward;
-        public BusinessWagon(Person steward) {
+        public BusinessWagon(): base(30) { }
+        public BusinessWagon(Person steward, int numberOfChairs):base(numberOfChairs) {
             Steward = steward;
         }
-        public BusinessWagon() { }
         public Person Steward { get { return steward; } set { steward = value; } }
-
-        public BusinessWagon(Person steward, int numberOfChairs) { Steward = steward; NumberOfChairs = numberOfChairs; }
         public override string ToString() {
-            return $"{GetType().Name} {NumberOfChairs} {Steward}";
+            return $"{base.ToString()} Jméno stevarda: {Steward}";
         }
     }
 }

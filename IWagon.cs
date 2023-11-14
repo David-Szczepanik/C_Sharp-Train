@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vlak {
-    internal interface IWagon {
-        void ConnectWagon(); 
-        void DisconnectWagon();
+namespace Train{
+    interface IWagon {
+        void Disconnect(Train tr);
+        void Connect(Train tr);
     }
 }

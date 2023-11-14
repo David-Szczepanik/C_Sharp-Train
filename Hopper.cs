@@ -1,16 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Train {
-    internal class Hopper {
-        private double loadingCapacity;
-        public double LoadingCapacity { get { return loadingCapacity; } set { loadingCapacity = value; } }
-        public Hopper(double tonnage) { loadingCapacity = tonnage;}
+    class Hopper : IWagon {
+        private readonly double loadingCapacity;
+
+        public double LoadingCapacity {
+            get { return loadingCapacity; }
+        }
+
+        public Hopper(double tonnage) {
+            loadingCapacity = tonnage;
+        }
+
+        public void Connect(Train train) {
+            if(train != null && !train.Wagons.Contains(this)) {
+                train.Wagons.Add(this);
+                Console.WriteLine($"Hopper {this} připojen k vlaku {train}");
+            } else {
+                Console.WriteLine("Hopper je již připojen k vlaku nebo je vlak null");
+            }
+        }
+        public void Disconnect(Train train) {
+            if(train != null && train.Wagons.Contains(this)) {
+                train.Wagons.Remove(this);
+            } else {
+                Console.WriteLine("Hopper je připojen k jinému vlaku nebo je vlak null");
+            }
+        }
         public override string ToString() {
-            return $"{GetType().Name} {loadingCapacity}";
+            return $"Typ vlaku: {GetType().Name} Nosnost: {loadingCapacity}t";
         }
     }
 }
